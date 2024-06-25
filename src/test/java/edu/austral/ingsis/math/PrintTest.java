@@ -1,7 +1,5 @@
 package edu.austral.ingsis.math;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import edu.austral.ingsis.math.Operations.*;

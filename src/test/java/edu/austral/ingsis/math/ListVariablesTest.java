@@ -5,10 +5,9 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.empty;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import edu.austral.ingsis.math.Operations.*;
 import java.util.Collections;
 import java.util.List;
-
-import edu.austral.ingsis.math.Operations.*;
 import org.junit.jupiter.api.Test;
 
 public class ListVariablesTest {
