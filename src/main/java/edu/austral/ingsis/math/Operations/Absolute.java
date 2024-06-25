@@ -5,18 +5,19 @@ import edu.austral.ingsis.math.UnaryOperation;
 
 import java.util.Map;
 
-public class SquareRoot extends UnaryOperation {
-    public SquareRoot(Function operand) {
+public class Absolute extends UnaryOperation {
+    public Absolute(Function operand) {
         super(operand);
     }
 
     @Override
     public double evaluate(Map<String, Double> variables) {
-        return Math.sqrt(this.operand.evaluate(variables));
+        return Math.abs(this.operand.evaluate(variables));
     }
 
     @Override
     public String toString() {
-        return "sqrt(" + getOperand().toString() + ")";
+        return "|" + this.operand.toString() + "|";
     }
 }
+

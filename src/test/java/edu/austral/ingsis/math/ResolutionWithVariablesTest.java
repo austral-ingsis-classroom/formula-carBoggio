@@ -3,71 +3,137 @@ package edu.austral.ingsis.math;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import edu.austral.ingsis.math.Operations.*;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ResolutionWithVariablesTest {
 
   /** Case 1 + x where x = 3 */
   @Test
-  public void shouldResolveFunction1() {
-    final Double result = 4d;
+  public void shouldEvaluateExpression() {
+    Function one = new Constant(1);
+    Function x = new Variable("x");
+    Function sum = new Sum(one, x);
 
-    assertThat(result, equalTo(4d));
+    Map<String, Double> variables = new HashMap<>();
+    variables.put("x", 3.0);
+
+    double result = sum.evaluate(variables);
+
+    assertThat(result, equalTo(4.0));
   }
 
   /** Case 12 / div where div = 4 */
   @Test
   public void shouldResolveFunction2() {
-    final Double result = 3d;
+    Function twelve = new Constant(12);
+    Function div = new Variable("div");
+    Function division = new Division(twelve, div);
 
-    assertThat(result, equalTo(3d));
+    Map<String, Double> variables = new HashMap<>();
+    variables.put("div", 4.0);
+
+    double result = division.evaluate(variables);
+
+    assertThat(result, equalTo(3.0));
   }
 
   /** Case (9 / x) * y where x = 3 and y = 4 */
   @Test
   public void shouldResolveFunction3() {
-    final Double result = 12d;
+    Function nine = new Constant(9);
+    Function x = new Variable("x");
+    Function y = new Variable("y");
+    Function division = new Division(nine, x);
+    Function multiplication = new Multiplication(division, y);
 
-    assertThat(result, equalTo(12d));
+    Map<String, Double> variables = new HashMap<>();
+    variables.put("x", 3.0);
+    variables.put("y", 4.0);
+
+    double result = multiplication.evaluate(variables);
+
+    assertThat(result, equalTo(12.0));
   }
 
   /** Case (27 / a) ^ b where a = 9 and b = 3 */
   @Test
   public void shouldResolveFunction4() {
-    final Double result = 27d;
+    Function twentySeven = new Constant(27);
+    Function a = new Variable("a");
+    Function b = new Variable("b");
+    Function division = new Division(twentySeven, a);
+    Function power = new Power(division, b);
 
-    assertThat(result, equalTo(27d));
+    Map<String, Double> variables = new HashMap<>();
+    variables.put("a", 9.0);
+    variables.put("b", 3.0);
+
+    double result = power.evaluate(variables);
+
+    assertThat(result, equalTo(27.0));
   }
 
   /** Case z ^ (1/2) where z = 36 */
   @Test
   public void shouldResolveFunction5() {
-    final Double result = 6d;
+    Function z = new Variable("z");
+    Function squareRoot = new SquareRoot(z);
 
-    assertThat(result, equalTo(6d));
+    Map<String, Double> variables = new HashMap<>();
+    variables.put("z", 36.0);
+
+    double result = squareRoot.evaluate(variables);
+
+    assertThat(result, equalTo(6.0));
   }
 
   /** Case |value| - 8 where value = 8 */
   @Test
   public void shouldResolveFunction6() {
-    final Double result = 0d;
+    Function value = new Variable("value");
+    Function absoluteValue = new Absolute(value);
+    Function the8 = new Constant(8);
+    Function sub = new Subtraction(absoluteValue, the8);
+    Map<String, Double> variables = new HashMap<>();
+    variables.put("value", 8.0);
 
-    assertThat(result, equalTo(0d));
+    double result = sub.evaluate(variables);
+
+    assertThat(result, equalTo(0.0));
   }
 
   /** Case |value| - 8 where value = 8 */
   @Test
   public void shouldResolveFunction7() {
-    final Double result = 0d;
+    Function value = new Variable("value");
+    Function absoluteValue = new Absolute(value);
+    Function the8 = new Constant(8);
+    Function sub = new Subtraction(absoluteValue, the8);
+    Map<String, Double> variables = new HashMap<>();
+    variables.put("value", 8.0);
 
-    assertThat(result, equalTo(0d));
+    double result = sub.evaluate(variables);
+
+    assertThat(result, equalTo(0.0));
   }
 
   /** Case (5 - i) * 8 where i = 2 */
   @Test
   public void shouldResolveFunction8() {
-    final Double result = 24d;
+    Function five = new Constant(5);
+    Function i = new Variable("i");
+    Function subtraction = new Subtraction(five, i);
+    Function multiplication = new Multiplication(subtraction, new Constant(8));
 
-    assertThat(result, equalTo(24d));
+    Map<String, Double> variables = new HashMap<>();
+    variables.put("i", 2.0);
+
+    double result = multiplication.evaluate(variables);
+
+    assertThat(result, equalTo(24.0));
   }
 }

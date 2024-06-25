@@ -1,7 +1,6 @@
-package edu.austral.ingsis.math.Operations;
+package edu.austral.ingsis.math;
 
-import edu.austral.ingsis.math.Function;
-
+import java.util.List;
 import java.util.Map;
 
 public class Constant implements Function {
@@ -22,5 +21,10 @@ public class Constant implements Function {
     @Override
     public String toString() {
         return "" + value;
+    }
+
+    @Override
+    public List<String> listVariables() {
+        return List.of(toString());
     }
 }

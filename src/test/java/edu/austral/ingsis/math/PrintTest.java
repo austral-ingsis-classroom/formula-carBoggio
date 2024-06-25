@@ -2,71 +2,95 @@ package edu.austral.ingsis.math;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import edu.austral.ingsis.math.Operations.*;
 import org.junit.jupiter.api.Test;
 
 public class PrintTest {
 
-  /** Case 1 + 6 */
   @Test
   public void shouldPrintFunction1() {
-    final String expected = "1 + 6";
-    final String result = expected;
+    Function one = new Constant(1);
+    Function six = new Constant(6);
 
-    assertThat(result, equalTo(expected));
+    Function operation = new Sum(one, six);
+
+    String str = operation.toString();
+    assertEquals("(1.0 + 6.0)", str);
   }
 
-  /** Case 12 / 2 */
   @Test
   public void shouldPrintFunction2() {
-    final String expected = "12 / 2";
-    final String result = expected;
+    Function twelve = new Constant(12);
+    Function two = new Constant(2);
 
-    assertThat(result, equalTo(expected));
+    Function operation = new Division(twelve, two);
+
+    String str = operation.toString();
+    assertEquals("(12.0 / 2.0)", str);
   }
 
-  /** Case (9 / 2) * 3 */
   @Test
   public void shouldPrintFunction3() {
-    final String expected = "(9 / 2) * 3";
-    final String result = expected;
+    Function nine = new Constant(9);
+    Function two = new Constant(2);
+    Function three = new Constant(3);
 
-    assertThat(result, equalTo(expected));
+    Function division = new Division(nine, two);
+    Function operation = new Multiplication(division, three);
+
+    String str = operation.toString();
+    assertEquals("((9.0 / 2.0) * 3.0)", str);
   }
 
-  /** Case (27 / 6) ^ 2 */
   @Test
   public void shouldPrintFunction4() {
-    final String expected = "(27 / 6) ^ 2";
-    final String result = expected;
+    Function twentySeven = new Constant(27);
+    Function six = new Constant(6);
+    Function two = new Constant(2);
 
-    assertThat(result, equalTo(expected));
+    Function division = new Division(twentySeven, six);
+    Function operation = new Power(division, two);
+
+    String str = operation.toString();
+    assertEquals("((27.0 / 6.0) ^ 2.0)", str);
   }
 
-  /** Case |value| - 8 */
   @Test
   public void shouldPrintFunction6() {
-    final String expected = "|value| - 8";
-    final String result = expected;
+    Function value = new Variable("value");
+    Function eight = new Constant(8);
 
-    assertThat(result, equalTo(expected));
+    Function abs = new Absolute(value);
+    Function operation = new Subtraction(abs, eight);
+
+    String str = operation.toString();
+    assertEquals("(|value| - 8.0)", str);
   }
 
-  /** Case |value| - 8 */
   @Test
   public void shouldPrintFunction7() {
-    final String expected = "|value| - 8";
-    final String result = expected;
+    Function value = new Variable("value");
+    Function eight = new Constant(8);
 
-    assertThat(result, equalTo(expected));
+    Function abs = new Absolute(value);
+    Function operation = new Subtraction(abs, eight);
+
+    String str = operation.toString();
+    assertEquals("(|value| - 8.0)", str);
   }
 
-  /** Case (5 - i) * 8 */
   @Test
   public void shouldPrintFunction8() {
-    final String expected = "(5 - i) * 8";
-    final String result = expected;
+    Function five = new Constant(5);
+    Function eight = new Constant(8);
+    Function i = new Variable("i");
 
-    assertThat(result, equalTo(expected));
+    Function subtraction = new Subtraction(five, i);
+    Function operation = new Multiplication(subtraction, eight);
+
+    String str = operation.toString();
+    assertEquals("((5.0 - i) * 8.0)", str);
   }
 }

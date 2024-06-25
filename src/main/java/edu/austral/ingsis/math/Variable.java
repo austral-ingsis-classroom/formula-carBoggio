@@ -1,7 +1,7 @@
-package edu.austral.ingsis.math.Operations;
+package edu.austral.ingsis.math;
 
-import edu.austral.ingsis.math.Function;
-
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public class Variable implements Function {
@@ -19,6 +19,11 @@ public class Variable implements Function {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public List<String> listVariables() {
+        return List.of(name);
     }
 
 
